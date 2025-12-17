@@ -13,7 +13,7 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
     <section className="relative md:h-screen w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         {/* Left Column - Content */}
-        <div className="relative z-10 flex flex-col px-4 md:px-8 mt-32">
+        <div className="relative z-10 flex flex-col px-4 md:px-8 mt-28">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

@@ -65,26 +65,73 @@ export function HomeCTA() {
     }
   }, [formData.color, emblaApi]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (
-      !formData.fullName ||
-      !formData.phoneNumber ||
-      !formData.size ||
-      !formData.color
-    ) {
-      toast.error("Missing Information", {
-        description: "Please fill in all fields to complete your order.",
+    try {
+      if (
+        !formData.fullName ||
+        !formData.phoneNumber ||
+        !formData.size ||
+        !formData.color ||
+        !formData.wilayah
+      ) {
+        toast.error("Missing Information", {
+          description: "Please fill in all fields to complete your order.",
+          className: "bg-destructive text-destructive-foreground border-none",
+        });
+        return;
+      }
+
+      const formDataToSubmit = new FormData();
+      formDataToSubmit.append("fullName", formData.fullName);
+      formDataToSubmit.append("phoneNumber", formData.phoneNumber);
+      formDataToSubmit.append("size", formData.size);
+      formDataToSubmit.append("color", formData.color);
+      formDataToSubmit.append("wilayah", formData.wilayah);
+      formDataToSubmit.append(
+        "access_key",
+        import.meta.env.VITE_WEB3FORMS_KEY || ""
+      );
+
+      // send data to web3forms
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSubmit,
+      });
+
+      const result = await response.json();
+
+      if (result.success !== true) {
+        toast.error("Submission Failed", {
+          description:
+            "There was an issue submitting your order. Please try again.",
+          className: "bg-destructive text-destructive-foreground border-none",
+        });
+        return;
+      }
+      if (result.success === true) {
+        toast.success("Order Received!", {
+          description: `We'll contact you at ${formData.phoneNumber} to confirm your order.`,
+          className: "bg-white text-black border-none",
+        });
+        setFormData({
+          fullName: "",
+          phoneNumber: "",
+          size: "",
+          color: "",
+          wilayah: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Submission Error", {
+        description:
+          "An unexpected error occurred while submitting your order. Please try again later.",
         className: "bg-destructive text-destructive-foreground border-none",
       });
       return;
     }
-
-    toast.success("Order Received!", {
-      description: `We'll contact you at ${formData.phoneNumber} to confirm your order.`,
-      className: "bg-white text-black border-none",
-    });
 
     // Reset form
     setFormData({
@@ -124,7 +171,7 @@ export function HomeCTA() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="overflow-hidden bg-background border border-white/5 w-137.5 p-2"
+            className="overflow-hidden bg-background border border-white/5 max-w-137.5 p-2"
           >
             <div className="" ref={emblaRef}>
               <div className="flex h-full">
