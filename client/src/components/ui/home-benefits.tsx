@@ -27,8 +27,8 @@ interface HomeBenefitsProps {
 export function HomeBenefits({ image }: HomeBenefitsProps) {
   return (
     <section className="py-20 bg-muted/20 border-t border-white/5">
-      <div className="container px-4">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
+      <div className="container px-4 mx-auto">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

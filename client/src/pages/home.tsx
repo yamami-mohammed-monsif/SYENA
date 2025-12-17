@@ -22,6 +22,8 @@ const IMAGES = {
   image6: "/product-img-black2.jpg",
   image7: "/product-img-white1.jpg",
   image8: "/product-img-white2.jpg",
+  Image9: "/represent5.jpg",
+  image10: "/represent6.jpg",
 };
 
 export default function Home() {
@@ -73,6 +75,8 @@ export default function Home() {
     IMAGES.image6,
     IMAGES.image7,
     IMAGES.image8,
+    IMAGES.Image9,
+    IMAGES.image10,
   ];
 
   return (
