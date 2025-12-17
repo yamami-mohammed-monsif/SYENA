@@ -37,7 +37,7 @@ export function HomeFeatures() {
             Designed for Everyday Streetwear
           </h2>
         </motion.div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
           {features.map((item, i) => (
             <motion.div
               key={i}
