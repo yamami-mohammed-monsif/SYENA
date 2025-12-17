@@ -100,7 +100,7 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
       <img
         src="limited-stock.png"
         alt="limited stock"
-        className="hidden md:block absolute left-1/3 top-3/4 w-28 h-28"
+        className="absolute left-2/3 top-1/3 sm:top-1/4 md:left-1/3 md:top-3/4 w-20 h-20 md:w-28 md:h-28"
       />
     </section>
   );
