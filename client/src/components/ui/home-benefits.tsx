@@ -1,24 +1,22 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Truck, Star } from "lucide-react";
+import { FiEye, FiWind, FiRepeat } from "react-icons/fi";
 
 const benefits = [
   {
-    icon: ShieldCheck,
-    title: "Built to Last",
+    icon: FiEye,
+    title: "Stand out Without Trying",
     description:
-      "Reinforced stitching and premium hardware ensure this hoodie survives the mosh pit and the wash.",
+      "بلا ما تهدر different يخلوك تبان oversized fit التصميم الجرافيكي والـ",
   },
   {
-    icon: Truck,
-    title: "Global Speed",
-    description:
-      "Fast, tracked shipping worldwide. From our warehouse to your doorstep in record time.",
+    icon: FiWind,
+    title: "Built for Daily Wear",
+    description: "قماش تقيل ومريح، يصلح للخروج، القعدة، وحتى التنقل اليومي.",
   },
   {
-    icon: Star,
-    title: "Community Approved",
-    description:
-      "Join 10,000+ satisfied customers who have elevated their daily rotation.",
+    icon: FiRepeat,
+    title: "One Jacket, Multiple Fits",
+    description: "jeans، cargo، sneakers أو boots تقدر تلبسو مع",
   },
 ];
 
@@ -54,8 +52,8 @@ export function HomeBenefits({ image }: HomeBenefitsProps) {
             className="w-full md:w-1/2"
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold uppercase mb-8">
-              Why They <br />
-              <span className="text-accent">Choose Us</span>
+              Why <br />
+              <span className="text-accent">This Jacket</span>
             </h2>
             <div className="space-y-8">
               {benefits.map((benefit, index) => (
@@ -67,7 +65,7 @@ export function HomeBenefits({ image }: HomeBenefitsProps) {
                     <h4 className="font-bold uppercase text-lg mb-1">
                       {benefit.title}
                     </h4>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-sm font-arabic">
                       {benefit.description}
                     </p>
                   </div>
