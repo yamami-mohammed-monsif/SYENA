@@ -1,43 +1,134 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Ruler } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 import { Button } from "@/components/ui/button";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
-interface HomeCTAProps {
-  images: string[];
-  emblaRef: any;
-  emblaApi: any;
-  selectedColor: "black" | "white";
-  setSelectedColor: (color: "black" | "white") => void;
-  selectedSize: string;
-  setSelectedSize: (size: string) => void;
-  handleAddToCart: () => void;
-}
+const IMAGES = {
+  represent1: "/represent1.jpg",
+  represent2: "/represent2.jpg",
+  represent3: "/represent3.jpg",
+  represent4: "/represent4.jpg",
+  represent5: "/represent5.jpg",
+  represent6: "/represent6.jpg",
+  black1: "/product-img-black1.jpg",
+  black2: "/product-img-black2.jpg",
+  white1: "/product-img-white1.jpg",
+  white2: "/product-img-white2.jpg",
+};
 
-export function HomeCTA({
-  images,
-  emblaRef,
-  emblaApi,
-  selectedColor,
-  setSelectedColor,
-  selectedSize,
-  setSelectedSize,
-  handleAddToCart,
-}: HomeCTAProps) {
+export function HomeCTA() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phoneNumber: "",
+    size: "",
+    color: "",
+    wilayah: "",
+  });
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  const sizes = ["S", "M", "L", "XL", "XXL"];
+  const colors = [
+    { name: "black", hex: "#000000", label: "Black" },
+    { name: "white", hex: "#f0f0f0", label: "White" },
+  ];
+
+  const currentImages =
+    formData.color === "white"
+      ? [
+          IMAGES.white1,
+          IMAGES.white2,
+          IMAGES.represent1,
+          IMAGES.represent2,
+          IMAGES.represent3,
+          IMAGES.represent4,
+          IMAGES.represent5,
+          IMAGES.represent6,
+        ]
+      : [
+          IMAGES.black1,
+          IMAGES.black2,
+          IMAGES.represent1,
+          IMAGES.represent2,
+          IMAGES.represent3,
+          IMAGES.represent4,
+          IMAGES.represent5,
+          IMAGES.represent6,
+        ];
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.scrollTo(0);
+    }
+  }, [formData.color, emblaApi]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (
+      !formData.fullName ||
+      !formData.phoneNumber ||
+      !formData.size ||
+      !formData.color
+    ) {
+      toast.error("Missing Information", {
+        description: "Please fill in all fields to complete your order.",
+        className: "bg-destructive text-destructive-foreground border-none",
+      });
+      return;
+    }
+
+    toast.success("Order Received!", {
+      description: `We'll contact you at ${formData.phoneNumber} to confirm your order.`,
+      className: "bg-white text-black border-none",
+    });
+
+    // Reset form
+    setFormData({
+      fullName: "",
+      phoneNumber: "",
+      size: "",
+      color: "",
+      wilayah: "",
+    });
+  };
+
   return (
-    <section id="buy-section" className="py-20 bg-muted/10">
-      <div className="container px-4">
+    <section
+      id="buy-section"
+      className="py-20 bg-muted/10 border-t border-white/5"
+    >
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl md:text-5xl font-display font-bold uppercase mb-4">
+            Get Yours Now
+          </h2>
+          <p className="text-muted-foreground text-lg font-arabic">
+            اطلب الآن وادفع عند الاستلام
+          </p>
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Left: Image Gallery */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="overflow-hidden bg-background border border-white/5 w-full p-2"
+            className="overflow-hidden bg-background border border-white/5 w-137.5 p-2"
           >
             <div className="" ref={emblaRef}>
               <div className="flex h-full">
-                {images.map((src, index) => (
+                {currentImages.map((src, index) => (
                   <div className="flex-[0_0_100%] h-full min-w-0" key={index}>
                     <img
                       src={src}
@@ -49,118 +140,161 @@ export function HomeCTA({
               </div>
             </div>
             <div className="flex gap-2 mt-2 overflow-x-auto pb-2">
-              {images.map((src, index) => (
+              {currentImages.map((src, index) => (
                 <button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
                   className="w-20 h-20 shrink-0 border border-white/10 hover:border-accent transition-colors"
                 >
-                  <img src={src} className="w-full h-full object-cover" />
+                  <img
+                    src={src}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
                 </button>
               ))}
             </div>
           </motion.div>
 
-          <motion.div
+          {/* Right: Order Form */}
+          <motion.form
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col justify-center"
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-background border border-white/10 p-6 md:p-8 rounded-none h-fit"
           >
-            <h2 className="text-4xl font-display font-bold uppercase mb-2">
-              Signature Hoodie
-            </h2>
-            <div className="text-3xl font-mono text-accent mb-6">$85.00</div>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              The ultimate statement piece. Designed for those who don't
-              compromise on fit or quality. Limited stock available for this
-              drop.
-            </p>
+            {/* Full Name */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="fullName"
+                className="text-sm uppercase tracking-widest text-muted-foreground"
+              >
+                Full Name
+              </Label>
+              <Input
+                id="fullName"
+                type="text"
+                placeholder="John Doe"
+                value={formData.fullName}
+                onChange={(e) =>
+                  setFormData({ ...formData, fullName: e.target.value })
+                }
+                className="h-12 bg-transparent border-white/20 rounded-none focus:border-accent transition-colors"
+              />
+            </div>
 
-            <div className="mb-8">
-              <label className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block">
-                Select Colorway
-              </label>
-              <div className="flex gap-4">
-                <button
-                  onClick={() => setSelectedColor("black")}
-                  className={`group relative w-16 h-16 flex items-center justify-center transition-all ${
-                    selectedColor === "black"
-                      ? "scale-110"
-                      : "opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  <div
-                    className={`w-14 h-14 rounded-full bg-black border-2 transition-colors ${
-                      selectedColor === "black"
-                        ? "border-accent"
-                        : "border-white/20"
+            {/* Phone Number */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="phoneNumber"
+                className="text-sm uppercase tracking-widest text-muted-foreground"
+              >
+                Phone Number
+              </Label>
+              <Input
+                id="phoneNumber"
+                type="tel"
+                placeholder="+213 555 123 456"
+                value={formData.phoneNumber}
+                onChange={(e) =>
+                  setFormData({ ...formData, phoneNumber: e.target.value })
+                }
+                className="h-12 bg-transparent border-white/20 rounded-none focus:border-accent transition-colors"
+              />
+            </div>
+
+            {/* Color Selection */}
+            <div className="space-y-4">
+              <Label className="text-sm uppercase tracking-widest text-muted-foreground">
+                Select Color
+              </Label>
+              <div className="flex gap-6">
+                {colors.map((color) => (
+                  <button
+                    key={color.name}
+                    type="button"
+                    onClick={() =>
+                      setFormData({ ...formData, color: color.name })
+                    }
+                    className={`group relative w-16 h-16 flex items-center justify-center cursor-pointer transition-all ${
+                      formData.color === color.name
+                        ? "scale-110"
+                        : "opacity-70 hover:opacity-100"
                     }`}
-                  />
-                  <span className="absolute -bottom-6 text-[10px] uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                    Black
-                  </span>
-                </button>
-                <button
-                  onClick={() => setSelectedColor("white")}
-                  className={`group relative w-16 h-16 flex items-center justify-center transition-all ${
-                    selectedColor === "white"
-                      ? "scale-110"
-                      : "opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  <div
-                    className={`w-14 h-14 rounded-full bg-[#f0f0f0] border-2 transition-colors ${
-                      selectedColor === "white"
-                        ? "border-accent"
-                        : "border-white/20"
-                    }`}
-                  />
-                  <span className="absolute -bottom-6 text-[10px] uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                    White
-                  </span>
-                </button>
+                  >
+                    <div
+                      style={{ backgroundColor: color.hex }}
+                      className={`w-16 h-16 rounded-full border-2 transition-all ${
+                        formData.color === color.name
+                          ? "border-accent shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                          : "border-white/20"
+                      }`}
+                    />
+                    <span className="absolute -bottom-8 text-xs uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                      {color.label}
+                    </span>
+                  </button>
+                ))}
               </div>
             </div>
 
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-3">
-                <label className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Select Size
-                </label>
-                <button className="text-xs underline decoration-accent underline-offset-4 flex items-center gap-1 hover:text-accent">
-                  <Ruler className="w-3 h-3" /> Size Guide
-                </button>
-              </div>
-              <ToggleGroup
-                type="single"
-                value={selectedSize}
-                onValueChange={setSelectedSize}
-                className="justify-start gap-3 flex-wrap"
-              >
-                {["S", "M", "L", "XL", "XXL"].map((size) => (
-                  <ToggleGroupItem
+            {/* Size Selection */}
+            <div className="space-y-4">
+              <Label className="text-sm uppercase tracking-widest text-muted-foreground">
+                Select Size
+              </Label>
+              <div className="flex flex-wrap gap-3">
+                {sizes.map((size) => (
+                  <button
                     key={size}
-                    value={size}
-                    className="h-12 w-12 rounded-none border border-white/20 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground data-[state=on]:border-accent hover:bg-white/5 transition-all font-mono"
+                    type="button"
+                    onClick={() => setFormData({ ...formData, size })}
+                    className={`w-14 h-14 flex items-center justify-center font-mono text-lg font-bold border-2 cursor-pointer transition-all ${
+                      formData.size === size
+                        ? "bg-accent text-accent-foreground border-accent scale-105"
+                        : "bg-transparent border-white/20 hover:border-white/40 hover:bg-white/5"
+                    }`}
                   >
                     {size}
-                  </ToggleGroupItem>
+                  </button>
                 ))}
-              </ToggleGroup>
+              </div>
             </div>
 
-            {/* <Button
-              onClick={handleAddToCart}
-              className="w-full h-16 bg-white text-black hover:bg-accent hover:text-white font-display font-black text-xl uppercase tracking-wider rounded-none transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+            {/* Wilaya Input */}
+            <div>
+              <Label
+                htmlFor="wilayah"
+                className="text-sm uppercase tracking-widest text-muted-foreground"
+              >
+                Wilaya
+              </Label>
+              <Input
+                id="wilayah"
+                type="text"
+                placeholder="e.g. Algiers"
+                value={formData.wilayah}
+                onChange={(e) =>
+                  setFormData({ ...formData, wilayah: e.target.value })
+                }
+                className="h-12 bg-transparent border-white/20 rounded-none focus:border-accent transition-colors"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <Button
+              type="submit"
+              className="w-full h-14 bg-white text-black hover:bg-accent hover:text-white font-display font-bold text-lg uppercase tracking-wider rounded-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
             >
-              Add To Order — $85.00
-            </Button> */}
-            <p className="text-center text-xs text-muted-foreground mt-4 uppercase tracking-widest">
-              Free Shipping on Orders Over $150
+              <span className="font-arabic"> اطلب الآن وادفع عند الاستلام</span>
+            </Button>
+
+            <p className="text-center text-xs text-muted-foreground uppercase tracking-widest font-arabic">
+              توصيل مجاني • الدفع عند الاستلام • تأكيد بالهاتف
             </p>
-          </motion.div>
+          </motion.form>
         </div>
       </div>
     </section>

@@ -89,16 +89,7 @@ export default function Home() {
         <HomeExperience />
         <HomeBenefits image={IMAGES.image3} />
         <HomeFeatures />
-        <HomeCTA
-          images={currentImages}
-          emblaRef={emblaRef}
-          emblaApi={emblaApi}
-          selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
-          selectedSize={selectedSize}
-          setSelectedSize={setSelectedSize}
-          handleAddToCart={handleAddToCart}
-        />
+        <HomeCTA />
         <HomeFaq />
       </main>
       <HomeFooter />

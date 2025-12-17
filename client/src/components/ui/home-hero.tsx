@@ -13,7 +13,7 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
     <section className="relative md:h-screen w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         {/* Left Column - Content */}
-        <div className="relative z-10 flex flex-col px-4 md:px-8 mt-24">
+        <div className="relative z-10 flex flex-col px-4 md:px-8 mt-32">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,8 +67,8 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
             >
               اطلب الآن وادفع عند الاستلام
             </Button>
-            <ul className="text-gray-300 text-xs mt-2 font-arabic pl-10 md:pl-2">
-              <li>توصيل لكل الولايات - الدفع عند الاستلام - تأكيد بالهاتف</li>
+            <ul className="text-gray-300 text-xs mt-2 font-arabic pl-10 md:pl-4">
+              <li> توصيل مجاني • الدفع عند الاستلام • تأكيد بالهاتف</li>
             </ul>
           </motion.div>
         </div>

@@ -4,7 +4,7 @@ const features = [
   {
     title: "Heavy Cotton Blend",
     description:
-      "قماش قطني مخلوط، تقيل من الخارج وناعم من الداخل. يعطيك دفء بلا ما يكوم خانق",
+      "قماش قطني مخلوط، تقيل من الخارج وناعم من الداخل. يعطيك دفء بلا ما يكون خانق",
   },
   {
     title: "Full Zip Closure",
@@ -14,7 +14,7 @@ const features = [
   {
     title: "Graphic Street Design",
     description:
-      "للجاكت ويخليه يبان من بعيد. character كبير ونظيف يعطي Graphic logo",
+      "Graphic logo كبير ونظيف يعطي character للجاكت ويخليه يبان من بعيد",
   },
   {
     title: "Everyday Street Fit",
