@@ -31,14 +31,17 @@ export function HomeHeader({ isScrolled, scrollToCTA }: HomeHeaderProps) {
             className="bg-background border-r border-white/10 w-75"
           >
             <nav className="flex flex-col gap-6 mt-10 font-display text-2xl uppercase font-bold">
-              <a href="#" className="hover:text-accent transition-colors">
-                Shop
+              <a
+                href="#features"
+                className="hover:text-accent transition-colors"
+              >
+                Features
               </a>
-              <a href="#" className="hover:text-accent transition-colors">
-                Collections
+              <a href="#order" className="hover:text-accent transition-colors">
+                Order Now
               </a>
-              <a href="#" className="hover:text-accent transition-colors">
-                About
+              <a href="#faq" className="hover:text-accent transition-colors">
+                FAQs
               </a>
             </nav>
           </SheetContent>

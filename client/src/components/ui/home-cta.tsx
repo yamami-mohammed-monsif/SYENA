@@ -144,10 +144,7 @@ export function HomeCTA() {
   };
 
   return (
-    <section
-      id="buy-section"
-      className="py-20 bg-muted/10 border-t border-white/5"
-    >
+    <section id="order" className="py-20 bg-muted/10 border-t border-white/5">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -157,10 +154,11 @@ export function HomeCTA() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-display font-bold uppercase mb-4">
-            Get Yours Now
+            Ready to Upgrade Your Look?
           </h2>
           <p className="text-muted-foreground text-lg font-arabic">
-            اطلب الآن وادفع عند الاستلام
+            الكمية محدودة، والتوصيل متوفر لكل الولايات. اطلب الآن وادفع عند
+            الاستلام.
           </p>
         </motion.div>
 

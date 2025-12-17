@@ -2,16 +2,13 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 
 const footerLinks = {
-  Help: [
-    { href: "#", text: "Shipping" },
-    { href: "#", text: "Returns" },
-    { href: "#", text: "Size Guide" },
-    { href: "#", text: "Contact Us" },
-  ],
+  Help: [{ href: "https://wa.me/213793760137", text: "Contact Us" }],
   Social: [
-    { href: "#", text: "Instagram" },
+    {
+      href: "https://www.instagram.com/dript.co0?igsh=anJ6djN0dHlnemxt",
+      text: "Instagram",
+    },
     { href: "#", text: "TikTok" },
-    { href: "#", text: "Twitter / X" },
   ],
 };
 
@@ -24,14 +21,18 @@ export function HomeFooter() {
       transition={{ duration: 0.8 }}
       className="py-12 bg-black border-t border-white/10 text-center md:text-left"
     >
-      <div className="container px-4">
+      <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
-            <Link href="/" className="text-2xl font-display font-black tracking-tighter uppercase text-white mb-4 block">
+            <Link
+              href="/"
+              className="text-2xl font-display font-black tracking-tighter uppercase text-white mb-4 block"
+            >
               DRIPT<span className="text-accent">.</span>
             </Link>
             <p className="text-muted-foreground max-w-xs mx-auto md:mx-0">
-              Redefining streetwear essentials for the modern era. Quality, fit, and attitude in every stitch.
+              Redefining streetwear essentials for the modern era. Quality, fit,
+              and attitude in every stitch.
             </p>
           </div>
           {Object.entries(footerLinks).map(([title, links]) => (
@@ -40,7 +41,13 @@ export function HomeFooter() {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 {links.map((link) => (
                   <li key={link.text}>
-                    <a href={link.href} className="hover:text-accent transition-colors">{link.text}</a>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      className="hover:text-accent transition-colors"
+                    >
+                      {link.text}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -48,7 +55,7 @@ export function HomeFooter() {
           ))}
         </div>
         <div className="mt-12 pt-8 border-t border-white/5 text-xs text-muted-foreground text-center">
-          &copy; {new Date().getFullYear()} DRIPT WORLDWIDE. ALL RIGHTS RESERVED.
+          &copy; {new Date().getFullYear()} DRIPT ALGERIA. ALL RIGHTS RESERVED.
         </div>
       </div>
     </motion.footer>

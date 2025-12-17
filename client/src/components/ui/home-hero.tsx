@@ -61,12 +61,20 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
                 </p>
               </li>
             </ul>
-            <Button
-              onClick={scrollToCTA}
-              className="w-full md:w-auto font-arabic h-14 px-10 bg-white text-black hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all"
-            >
-              اطلب الآن وادفع عند الاستلام
-            </Button>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+              <Button
+                onClick={scrollToCTA}
+                className="w-full md:w-auto font-arabic h-14 px-10 bg-white text-black hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all"
+              >
+                اطلب الآن وادفع عند الاستلام
+              </Button>
+              <div className="flex items-center gap-2">
+                <span className="opacity-70 line-through text-base">
+                  6000 DA
+                </span>
+                <span className="text-lg">5800 DA</span>
+              </div>
+            </div>
             <ul className="text-gray-300 text-xs mt-2 font-arabic pl-10 md:pl-4">
               <li> توصيل مجاني • الدفع عند الاستلام • تأكيد بالهاتف</li>
             </ul>
@@ -87,6 +95,11 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/50 z-20">
         <ChevronDown className="w-8 h-8" />
       </div>
+      <img
+        src="limited-stock.png"
+        alt="limited stock"
+        className="hidden md:block absolute left-1/3 top-3/4 w-28 h-28"
+      />
     </section>
   );
 }
