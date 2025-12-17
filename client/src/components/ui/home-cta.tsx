@@ -337,8 +337,12 @@ export function HomeCTA() {
             </Button>
 
             <p className="text-center text-xs text-muted-foreground uppercase tracking-widest font-arabic">
-              توصيل مجاني • الدفع عند الاستلام • تأكيد بالهاتف
+              معلوماتك محمية • لا يتم الدفع إلا عند الاستلام
             </p>
+            <div className="text-center font-arabic text-s text-muted-foreground">
+              {" "}
+              الكمية محدودة – الطلبات تعالج حسب الأسبقية
+            </div>
           </motion.form>
         </div>
       </div>

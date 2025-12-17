@@ -6,20 +6,18 @@ import { FaTruckFast, FaRegFaceSmileBeam } from "react-icons/fa6";
 const experienceSteps = [
   {
     icon: <BsCart4 className="w-8 h-8 text-accent" />,
-    title: "Order in seconds",
-    description:
-      "اختار المقاس واللون، دخّل رقمك وولايتك، واحنا نتكفلوا بالباقي.",
+    title: "اطلب الآن في أقل من 30 ثانية  ",
+    description: "اختر المقاس واللون، واملأ معلوماتك",
   },
   {
     icon: <FaTruckFast className="w-8 h-8 text-accent" />,
-    title: "Delivery",
-    description:
-      "نعيّطولك لتأكيد الطلب ومن بعدها الجاكت يخرج مباشرة للتوصيل يوصل حتى لعندك خلال أيام",
+    title: "نوصلك حتى لباب دارك",
+    description: "توصيل سريع خلال 24–48 ساعة",
   },
   {
     icon: <FaRegFaceSmileBeam className="w-8 h-8 text-accent" />,
-    title: "Wear the look",
-    description: "البس الجاكت وخرج اللوك تاعك",
+    title: "تلبس وتخرج ستايل  ",
+    description: "يعطيك حضور قوي Oversized look",
   },
 ];
 
@@ -61,7 +59,9 @@ export function HomeExperience() {
                   0{index + 1}
                 </div>
               </div>
-              <h4 className="text-xl font-bold uppercase mb-3">{step.title}</h4>
+              <h4 className="text-xl font-bold uppercase mb-3 font-arabic">
+                {step.title}
+              </h4>
               <p className="text-muted-foreground leading-relaxed text-left font-arabic text-sm">
                 {step.description}
               </p>

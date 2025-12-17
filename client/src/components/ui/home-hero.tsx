@@ -13,15 +13,15 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
     <section className="relative md:h-screen w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         {/* Left Column - Content */}
-        <div className="relative z-10 flex flex-col px-4 md:px-8 mt-28">
+        <div className="relative z-10 flex flex-col px-4 md:px-8 mt-24">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="flex items-center gap-2">
-              <span className="bg-accent text-accent-foreground px-2 py-1 text-xs font-bold uppercase tracking-widest mb-4">
-                New Drop
+            <div className="flex items-center gap-2 mb-2">
+              <span className="bg-accent text-accent-foreground px-2 py-1 text-xs font-bold uppercase tracking-widest">
+                New Drop - Limited Stock
               </span>
               <div className="flex text-yellow-500">
                 {[...Array(5)].map((_, i) => (
@@ -29,16 +29,18 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
                 ))}
               </div>
             </div>
-            <h1 className="text-3xl md:text-[68px] font-display font-black leading-8 md:leading-none tracking-tight uppercase mb-6 text-white">
-              Not everyone can pull this off
+            <h1 className="text-2xl md:text-5xl font-arabic font-black leading-8 md:leading-18 tracking-tight uppercase mb-6 text-white">
+              سترة{" "}
+              <span className="font-display text-3xl md:text-6xl">
+                Oversized
+              </span>{" "}
+              تعطيك ستايل قوي بدون ما تفكر وش تلبس
             </h1>
-            <p className="max-w-md text-gray-300 text-base md:text-xl leading-relaxed mb-8">
-              Syena oversized zip jacket{" "}
-              <span className="block font-arabic text-sm md:text-base">
-                تصميم جريء - قماش ثقيل - ستايل يبان من بعيد
-              </span>
+            <p className="max-w-md text-gray-300 text-base md:text-xl leading-relaxed mb-6 font-arabic">
+              <span className="block"> Syena سترة</span> مصممة للرجال اللي يحبوا
+              يبانوا مختلفين، مريحة، ثقيلة، وتناسب الخروج اليومي.
             </p>
-            <ul className="text-gray-300 flex flex-col gap-3 mb-8 ">
+            <ul className="text-gray-300 flex flex-col gap-2 mb-6 ">
               <li className="flex items-center gap-2">
                 <IoMdCheckmark className="inline text-white" />
                 <p>

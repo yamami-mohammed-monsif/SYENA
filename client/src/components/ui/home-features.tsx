@@ -3,22 +3,19 @@ import { motion } from "framer-motion";
 const features = [
   {
     title: "Heavy Cotton Blend",
-    description:
-      "قماش قطني مخلوط، تقيل من الخارج وناعم من الداخل. يعطيك دفء بلا ما يكون خانق",
+    description: "قماش ثقيل يعطيك دفء وثبات في الشكل",
   },
   {
     title: "Full Zip Closure",
-    description:
-      "كامل وسلس، تلبسو محلول أو مسكّر حسب اللوك وسهل في اللبس والنزع Zip",
+    description: "تلبسها مفتوحة أو مغلوقة حسب الستايل",
   },
   {
     title: "Graphic Street Design",
-    description:
-      "Graphic logo كبير ونظيف يعطي character للجاكت ويخليه يبان من بعيد",
+    description: "تصميم ستريت واضح يعطي شخصية للقطعة",
   },
   {
     title: "Everyday Street Fit",
-    description: "مريح ومناسب للاستعمال اليومي يصلح للخروج و التنقل Fit",
+    description: "مريحة، واسعة، ومناسبة للخروج اليومي",
   },
 ];
 

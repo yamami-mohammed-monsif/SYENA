@@ -4,19 +4,18 @@ import { FiEye, FiWind, FiRepeat } from "react-icons/fi";
 const benefits = [
   {
     icon: FiEye,
-    title: "Stand out Without Trying",
-    description:
-      "بلا ما تهدر different يخلوك تبان oversized fit التصميم الجرافيكي والـ",
+    title: "ستايل يبان بدون مجهود",
+    description: "Outfit يعطيك حضور قوي حتى مع أبسط Oversized fit",
   },
   {
     icon: FiWind,
-    title: "Built for Daily Wear",
-    description: "قماش تقيل ومريح، يصلح للخروج، القعدة، وحتى التنقل اليومي.",
+    title: "مصممة للاستعمال اليومي",
+    description: "قماش ثقيل ومريح، ما يتفسخش مع اللبس المتكرر",
   },
   {
     icon: FiRepeat,
-    title: "One Jacket, Multiple Fits",
-    description: "jeans، cargo، sneakers أو boots تقدر تلبسو مع",
+    title: "تناسب جو الجزائر",
+    description: "Hoodie مثالية للخروج اليومي تلبسها وحدها أو مع",
   },
 ];
 
@@ -52,8 +51,8 @@ export function HomeBenefits({ image }: HomeBenefitsProps) {
             className="w-full md:w-1/2"
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold uppercase mb-8">
-              Why <br />
-              <span className="text-accent">This Jacket</span>
+              <span className="font-arabic">لماذا</span> <br />
+              <span className="text-accent">Syena Jacket</span>
             </h2>
             <div className="space-y-8">
               {benefits.map((benefit, index) => (
@@ -62,7 +61,7 @@ export function HomeBenefits({ image }: HomeBenefitsProps) {
                     <benefit.icon className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h4 className="font-bold uppercase text-lg mb-1">
+                    <h4 className="font-bold font-arabic uppercase mb-1">
                       {benefit.title}
                     </h4>
                     <p className="text-muted-foreground text-sm font-arabic">
