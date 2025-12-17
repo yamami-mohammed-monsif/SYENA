@@ -4,19 +4,15 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(), // This handles Tailwind v4 automatically
-  ],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
     },
   },
-  // Remove the css: { postcss: ... } block entirely
   root: "./",
-  publicDir: "public",
+  publicDir: "public", // This ensures Vite copies your REAL images to the build
   build: {
     outDir: "dist",
     emptyOutDir: true,
