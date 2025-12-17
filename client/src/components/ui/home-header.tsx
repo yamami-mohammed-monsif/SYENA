@@ -28,7 +28,7 @@ export function HomeHeader({ isScrolled, scrollToCTA }: HomeHeaderProps) {
           </SheetTrigger>
           <SheetContent
             side="left"
-            className="bg-background border-r border-white/10 w-[300px]"
+            className="bg-background border-r border-white/10 w-75"
           >
             <nav className="flex flex-col gap-6 mt-10 font-display text-2xl uppercase font-bold">
               <a href="#" className="hover:text-accent transition-colors">
