@@ -8,7 +8,7 @@ interface HomeHeroProps {
   scrollToCTA: () => void;
 }
 
-export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
+export function HomeHero({ scrollToCTA }: HomeHeroProps) {
   return (
     <section className="relative md:h-screen w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
@@ -68,7 +68,7 @@ export function HomeHero({ backgroundImage, scrollToCTA }: HomeHeroProps) {
                 onClick={scrollToCTA}
                 className="w-full md:w-auto font-arabic h-14 px-10 bg-white text-black hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all"
               >
-                اطلب الآن وادفع عند الاستلام
+                <a href="#order"> اطلب الآن وادفع عند الاستلام</a>
               </Button>
               <div className="flex items-center gap-2">
                 <span className="opacity-70 line-through text-base">
