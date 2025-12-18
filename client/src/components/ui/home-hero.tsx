@@ -86,7 +86,7 @@ export function HomeHero({ scrollToCTA }: HomeHeroProps) {
         {/* Right Column - Image */}
         <div className="relative -mt-10 md:-mt-20">
           <img
-            src="/hero-img.png"
+            src="/hero-img.webp"
             alt="Hero Background"
             className="w-full h-full object-cover brightness-[0.8]"
           />

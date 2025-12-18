@@ -37,7 +37,7 @@ export function HomeBenefits({ image }: HomeBenefitsProps) {
           >
             <div className="relative aspect-square overflow-hidden bg-muted">
               <img
-                src="/benefits-img.jpg"
+                src="/benefits-img.webp"
                 alt="Lifestyle Detail"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />

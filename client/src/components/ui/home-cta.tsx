@@ -7,16 +7,16 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
 const IMAGES = {
-  represent1: "/represent1.jpg",
-  represent2: "/represent2.jpg",
-  represent3: "/represent3.jpg",
-  represent4: "/represent4.jpg",
-  represent5: "/represent5.jpg",
-  represent6: "/represent6.jpg",
-  black1: "/product-img-black1.jpg",
-  black2: "/product-img-black2.jpg",
-  white1: "/product-img-white1.jpg",
-  white2: "/product-img-white2.jpg",
+  represent1: "/represent1.webp",
+  represent2: "/represent2.webp",
+  represent3: "/represent3.webp",
+  represent4: "/represent4.webp",
+  represent5: "/represent5.webp",
+  represent6: "/represent6.webp",
+  black1: "/product-img-black1.webp",
+  black2: "/product-img-black2.webp",
+  white1: "/product-img-white1.webp",
+  white2: "/product-img-white2.webp",
 };
 
 export function HomeCTA() {
