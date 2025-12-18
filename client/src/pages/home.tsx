@@ -1,30 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { HomeHeader } from "@/components/ui/home-header";
 import { HomeHero } from "@/components/ui/home-hero";
-import { HomeExperience } from "@/components/ui/home-experience";
-import { HomeBenefits } from "@/components/ui/home-benefits";
-import { HomeFeatures } from "@/components/ui/home-features";
-import { HomeCTA } from "@/components/ui/home-cta";
-import { HomeFaq } from "@/components/ui/home-faq";
-import { HomeFooter } from "@/components/ui/home-footer";
-import { HomeStickyCTA } from "@/components/ui/home-sticky-cta";
 
-// --- Assets ---
-const IMAGES = {
-  image1: "/represent1.jpg",
-  image2: "/represent2.jpg",
-  image3: "/represent3.jpg",
-  image4: "/represent4.jpg",
-  image5: "/product-img-black1.jpg",
-  image6: "/product-img-black2.jpg",
-  image7: "/product-img-white1.jpg",
-  image8: "/product-img-white2.jpg",
-  Image9: "/represent5.jpg",
-  image10: "/represent6.jpg",
-};
+// ✅ OPTIMIZATION: Lazy load below-the-fold components
+const HomeExperience = lazy(() =>
+  import("@/components/ui/home-experience").then((m) => ({
+    default: m.HomeExperience,
+  }))
+);
+const HomeBenefits = lazy(() =>
+  import("@/components/ui/home-benefits").then((m) => ({
+    default: m.HomeBenefits,
+  }))
+);
+const HomeFeatures = lazy(() =>
+  import("@/components/ui/home-features").then((m) => ({
+    default: m.HomeFeatures,
+  }))
+);
+const HomeCTA = lazy(() =>
+  import("@/components/ui/home-cta").then((m) => ({ default: m.HomeCTA }))
+);
+const HomeFaq = lazy(() =>
+  import("@/components/ui/home-faq").then((m) => ({ default: m.HomeFaq }))
+);
+const HomeFooter = lazy(() =>
+  import("@/components/ui/home-footer").then((m) => ({ default: m.HomeFooter }))
+);
+const HomeStickyCTA = lazy(() =>
+  import("@/components/ui/home-sticky-cta").then((m) => ({
+    default: m.HomeStickyCTA,
+  }))
+);
+
+// ✅ OPTIMIZATION: Removed unused IMAGES object - images are referenced directly in components
 
 export default function Home() {
   const [selectedColor, setSelectedColor] = useState<"black" | "white">(
@@ -34,10 +46,21 @@ export default function Home() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // ✅ OPTIMIZATION: Debounced scroll handler to reduce repaints
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    let timeoutId: NodeJS.Timeout;
+    const handleScroll = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsScrolled(window.scrollY > 50);
+      }, 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   useEffect(() => {
@@ -50,50 +73,42 @@ export default function Home() {
       ?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleAddToCart = () => {
-    if (!selectedSize) {
-      toast.error("Size Required", {
-        description: "Please select your size to continue.",
-        className:
-          "bg-destructive text-destructive-foreground border-none font-sans",
-      });
-      scrollToCTA();
-      return;
-    }
-    toast.success("Added to Bag", {
-      description: `Syena World Hoodie (${selectedColor.toUpperCase()} / ${selectedSize})`,
-      className: "bg-white text-black border-none font-sans",
-    });
-  };
-
-  const currentImages = [
-    IMAGES.image1,
-    IMAGES.image2,
-    IMAGES.image3,
-    IMAGES.image4,
-    IMAGES.image5,
-    IMAGES.image6,
-    IMAGES.image7,
-    IMAGES.image8,
-    IMAGES.Image9,
-    IMAGES.image10,
-  ];
-
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-accent-foreground pb-24 md:pb-0">
       <div className="noise-bg" />
       <Toaster position="top-center" />
       <HomeHeader isScrolled={isScrolled} scrollToCTA={scrollToCTA} />
       <main>
-        <HomeHero backgroundImage={IMAGES.image2} scrollToCTA={scrollToCTA} />
-        <HomeExperience />
-        <HomeBenefits image={IMAGES.image3} />
-        <HomeFeatures />
-        <HomeCTA />
-        <HomeFaq />
+        <HomeHero />
+
+        <Suspense fallback={<div className="h-20" />}>
+          <HomeExperience />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96" />}>
+          <HomeBenefits />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-64" />}>
+          <HomeFeatures />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-screen" />}>
+          <HomeCTA />
+        </Suspense>
+
+        <Suspense fallback={<div className="h-96" />}>
+          <HomeFaq />
+        </Suspense>
       </main>
-      <HomeFooter />
-      <HomeStickyCTA isScrolled={isScrolled} scrollToCTA={scrollToCTA} />
+
+      <Suspense fallback={<div className="h-48" />}>
+        <HomeFooter />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <HomeStickyCTA isScrolled={isScrolled} scrollToCTA={scrollToCTA} />
+      </Suspense>
     </div>
   );
 }

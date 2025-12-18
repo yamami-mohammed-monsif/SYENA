@@ -19,11 +19,7 @@ const benefits = [
   },
 ];
 
-interface HomeBenefitsProps {
-  image: string;
-}
-
-export function HomeBenefits({ image }: HomeBenefitsProps) {
+export function HomeBenefits() {
   return (
     <section className="py-20 bg-muted/20 border-t border-white/5">
       <div className="container px-4 mx-auto">

@@ -3,12 +3,7 @@ import { Star, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { IoMdCheckmark } from "react-icons/io";
 
-interface HomeHeroProps {
-  backgroundImage: string;
-  scrollToCTA: () => void;
-}
-
-export function HomeHero({ scrollToCTA }: HomeHeroProps) {
+export function HomeHero() {
   return (
     <section className="relative md:h-screen w-full overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
@@ -64,10 +59,7 @@ export function HomeHero({ scrollToCTA }: HomeHeroProps) {
               </li>
             </ul>
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-              <Button
-                onClick={scrollToCTA}
-                className="w-full md:w-auto font-arabic h-14 px-10 bg-orange-600 text-white hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all"
-              >
+              <Button className="w-full md:w-auto font-arabic h-14 px-10 bg-orange-600 text-white hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all">
                 <a href="#order"> اطلب الآن وادفع عند الاستلام</a>
               </Button>
               <div className="flex items-center gap-2">
