@@ -66,7 +66,7 @@ export function HomeHero({ scrollToCTA }: HomeHeroProps) {
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
               <Button
                 onClick={scrollToCTA}
-                className="w-full md:w-auto font-arabic h-14 px-10 bg-white text-black hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all"
+                className="w-full md:w-auto font-arabic h-14 px-10 bg-orange-600 text-white hover:bg-accent cursor-pointer hover:text-white text-base font-bold uppercase tracking-wider rounded-none transition-all"
               >
                 <a href="#order"> اطلب الآن وادفع عند الاستلام</a>
               </Button>

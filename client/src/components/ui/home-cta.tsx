@@ -332,7 +332,7 @@ export function HomeCTA() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full h-14 bg-white text-black hover:bg-accent hover:text-white font-display font-bold text-lg uppercase tracking-wider rounded-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+              className="w-full h-14 bg-orange-600 text-white hover:bg-accent hover:text-white font-display font-bold text-lg uppercase tracking-wider rounded-none cursor-pointer transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
             >
               <span className="font-arabic"> اطلب الآن وادفع عند الاستلام</span>
             </Button>
