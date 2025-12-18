@@ -14,7 +14,7 @@ export function HomeStickyCTA({ isScrolled, scrollToCTA }: HomeStickyCTAProps) {
     >
       <Button
         onClick={scrollToCTA}
-        className="w-full h-12 font-arabic bg-orange-600 text-white hover:bg-accent hover:text-white font-bold uppercase tracking-wider rounded-none"
+        className="w-full h-14 font-arabic bg-orange-600 text-white hover:bg-accent hover:text-white font-bold uppercase tracking-wider rounded-none"
       >
         <a href="#order"> اطلب الآن وادفع عند الاستلام</a>
       </Button>
