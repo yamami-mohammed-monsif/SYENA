@@ -77,7 +77,7 @@ export function HomeHero({ scrollToCTA }: HomeHeroProps) {
                 <span className="text-lg">5800 DA</span>
               </div>
             </div>
-            <ul className="text-gray-300 text-xs mt-2 font-arabic pl-10 md:pl-4">
+            <ul className="text-gray-300 text-xs mt-2 font-arabic pl-14 md:pl-4">
               <li> توصيل مجاني • الدفع عند الاستلام • تأكيد بالهاتف</li>
             </ul>
           </motion.div>

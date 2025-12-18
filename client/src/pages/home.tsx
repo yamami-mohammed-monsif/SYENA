@@ -93,7 +93,7 @@ export default function Home() {
         <HomeFaq />
       </main>
       <HomeFooter />
-      {/* <HomeStickyCTA isScrolled={isScrolled} scrollToCTA={scrollToCTA} /> */}
+      <HomeStickyCTA isScrolled={isScrolled} scrollToCTA={scrollToCTA} />
     </div>
   );
 }
